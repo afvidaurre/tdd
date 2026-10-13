@@ -6,7 +6,7 @@ import org.example.excepciones.PedidoInvalidoException;
 
 public class PedidoTest extends TestCase {
     public void testCreaPedidoValidoYCalculaTotal() {
-        Cliente cliente = Cliente.crear("Ana", "ana@example.com", "12345678");
+        Cliente cliente = Cliente.crear("Ana", "ana@mail.com", "12345678");
         Producto producto = Producto.crear("Teclado", "TEC-001", new BigDecimal("12500.50"), 8);
         Pedido pedido = Pedido.crear(cliente, producto, 2);
         assertSame(cliente, pedido.getCliente());
@@ -21,18 +21,18 @@ public class PedidoTest extends TestCase {
     }
 
     public void testRechazaProductoNulo() {
-        Cliente cliente = Cliente.crear("Ana", "ana@example.com", "12345678");
+        Cliente cliente = Cliente.crear("Ana", "ana@mail.com", "12345678");
         assertInvalid(cliente, null, 1);
     }
 
     public void testRechazaCantidadNoPositiva() {
-        Cliente cliente = Cliente.crear("Ana", "ana@example.com", "12345678");
+        Cliente cliente = Cliente.crear("Ana", "ana@mail.com", "12345678");
         Producto producto = Producto.crear("Teclado", "TEC-001", new BigDecimal("10.00"), 8);
         assertInvalid(cliente, producto, 0);
     }
 
     public void testRechazaCantidadMayorAlStock() {
-        Cliente cliente = Cliente.crear("Ana", "ana@example.com", "12345678");
+        Cliente cliente = Cliente.crear("Ana", "ana@mail.com", "12345678");
         Producto producto = Producto.crear("Teclado", "TEC-001", new BigDecimal("10.00"), 2);
         assertInvalid(cliente, producto, 3);
     }
